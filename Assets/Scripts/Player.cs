@@ -8,13 +8,16 @@ public class Player : MonoBehaviour
     Rigidbody2D rigidBody;
     public float jumpForce;
     private bool isGround;
+    GameControlller m_gc;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        
+        m_gc = FindObjectOfType<GameControlller>();
+
+
     }
 
     // Update is called once per frame
@@ -34,10 +37,17 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ground"))
         {
-            //test github
             isGround = true;
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            m_gc.setGameoverState(true);
+            //Time.timeScale = 0f; pausegame
+        }
+    }
 
 }
