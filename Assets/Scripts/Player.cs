@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ground"))
         {
+            //test github
             isGround = true;
         }
     }
